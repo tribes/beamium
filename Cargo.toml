@@ -20,7 +20,13 @@ slog-json = "1.2.1"
 slog-scope = "0.2.2"
 slog-syslog = "0.8.0"
 flate2 = "0.2"
+openssl-probe = "0.1.1"
+openssl-sys = "0.9"
 
 [dependencies.slog]
 version = "1.2"
 features = ["release_max_level_debug", "max_level_debug"]
+
+[patch.crates-io]
+# This is needed to handle cross-compilation of libpq.
+pq-sys = { git = 'https://github.com/golddranks/pq-sys' }

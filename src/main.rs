@@ -18,6 +18,7 @@ extern crate slog_json;
 extern crate slog_syslog;
 extern crate nix;
 extern crate flate2;
+extern crate openssl_probe;
 
 use clap::App;
 use std::thread;
@@ -48,6 +49,7 @@ extern "C" fn handle_sigint(_: i32) {
 
 /// Main loop.
 fn main() {
+    openssl_probe::init_ssl_cert_env_vars();
     unsafe {
         let sig_action = signal::SigAction::new(signal::SigHandler::Handler(handle_sigint),
                                                 signal::SaFlags::empty(),
